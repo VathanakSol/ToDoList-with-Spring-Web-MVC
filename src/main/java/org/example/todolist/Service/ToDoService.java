@@ -25,11 +25,10 @@ public class ToDoService {
     public ToDoList updateToDoItem(Long id, ToDoList toDoItem) {
         ToDoList existingItem = toDoListDataSource.findById(id).orElse(null);
         if (existingItem != null) {
-            existingItem.setTask(toDoItem.getTask()); // Update necessary fields
-            // ... (update other fields if needed)
+            existingItem.setTask(toDoItem.getTask());
             return toDoListDataSource.save(existingItem);
         } else {
-            return null; // Or throw an exception if item not found
+            return null;
         }
     }
     public void deleteToDoItem(Long id) {
