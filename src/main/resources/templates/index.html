@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>To Do List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<div class="container mx-auto p-6">
+    <h1 class="text-center text-2xl font-bold text-white bg-blue-500 py-4 mb-6">To Do List</h1>
+
+    <div class="overflow-x-auto">
+        <table class="table-auto w-full bg-gray-100 text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+                <th scope="col" class="px-6 py-3">ID</th>
+                <th scope="col" class="px-6 py-3">Task</th>
+                <th scope="col" class="px-6 py-3">Description</th>
+                <th scope="col" class="px-6 py-3">Is Done</th>
+                <th scope="col" class="px-6 py-3">Created At</th>
+                <th scope="col" class="px-6 py-3">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="ToDoList : ${todos}" class="bg-white border-b text-center">
+                <td th:text="${ToDoList.id}" class="px-6 py-4">001</td>
+                <td th:text="${ToDoList.task}" class="px-6 py-4">Do Homework</td>
+                <td th:text="${ToDoList.description}" class="px-6 py-4">Java Project Spring</td>
+                <td th:text="${ToDoList.isDone ? 'Yes' : 'No'}" class="px-6 py-4">Not Yet</td>
+                <td th:text="${ToDoList.createdAt}" class="px-6 py-4">15-03-2024</td>
+                <td class="px-6 py-4">
+                    <div class="flex justify-center gap-2">
+                        <a th:href="@{/edit/{id}(id=${ToDoList.id})}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+                        <a th:href="@{/delete/{id}(id=${ToDoList.id})}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br/>
+
+    <div class="flex justify-center gap-4">
+        <a href="/add" class="bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-md">Add New Task (+)</a>
+        <a href="/edit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-md">Edit Task</a>
+        <a href="/delete" class="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-md">Delete Task (-)</a>
+    </div>
+</div>
+</body>
+</html>
